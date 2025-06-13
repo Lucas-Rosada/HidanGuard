@@ -86,12 +86,6 @@ Baseado no personagem **Hidan** (Naruto) – imortal e sádico, representando o 
 
 ---
 
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
 ## 🙋‍♂️ Contato
 
 Desenvolvido por **Lucas**  
