@@ -93,4 +93,4 @@ Desenvolvido por **Lucas**
 
 ---
 
-> “A armadilha foi armada....” – *HidanGuard*
+> “A armadilha de Hidan já está em ação. Seu destino foi traçado no momento em que entrou.” – *HidanGuard*
