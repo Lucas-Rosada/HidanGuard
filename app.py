@@ -85,23 +85,27 @@ class HidanGuard:
         ip = request.remote_addr
         user_agent = request.headers.get('User-Agent', '').lower()
         
-        exploit_patterns = [
-            (r'(\%27)|(\')|(\-\-)', "SQL Injection attempt"),
-            (r'((\%3D)|(=))[^\n]*((\%27)|(\')|(\-\-))', "SQL Injection attempt"),
-            (r'\w*((\%27)|(\'))((\%6F)|o|(\%4F))((\%72)|r|(\%52))', "SQL Injection attempt"),
-            (r'(eval\()', "Command Injection attempt"),
-            (r'(union\s+select)', "SQL Injection attempt"),
-            (r'(base64_decode\()', "PHP Code Injection attempt"),
-            (r'(\.\.\/)', "Path Traversal attempt"),
-            (r'(;\s*(sh|bash|cmd|powershell)\s*)', "Command Injection attempt"),
-            (r'(<script>)', "XSS attempt"),
-            (r'(document\.cookie)', "XSS attempt"),
-            (r'(alert\()', "XSS attempt"),
-            (r'(onerror=)', "XSS attempt"),
-            (r'(javascript:)', "XSS attempt"),
-            (r'(onload\s*=)', "XSS attempt"),
-            (r'(onmouseover\s*=)', "XSS attempt")
-        ]
+    exploit_patterns = [
+        (r'(\%27)|(\')|(\-\-)', "SQL Injection attempt"),
+        (r'((\%3D)|(=))[^\n]*((\%27)|(\')|(\-\-))', "SQL Injection attempt"),
+        (r'\w*((\%27)|(\'))((\%6F)|o|(\%4F))((\%72)|r|(\%52))', "SQL Injection attempt"),
+        (r'(eval\()', "Command Injection attempt"),
+        (r'(union\s+select)', "SQL Injection attempt"),
+        (r'(base64_decode\()', "PHP Code Injection attempt"),
+        (r'(\.\.\/)', "Path Traversal attempt"),
+        (r'(;\s*(sh|bash|cmd|powershell)\s*)', "Command Injection attempt"),
+        (r'(<script>)', "XSS attempt"),
+        (r'(document\.cookie)', "XSS attempt"),
+        (r'(alert\()', "XSS attempt"),
+        (r'(onerror=)', "XSS attempt"),
+        (r'(javascript:)', "XSS attempt"),
+        (r'(onload\s*=)', "XSS attempt"),
+        (r'(onmouseover\s*=)', "XSS attempt"),
+        (r'(sleep\(\d+\))', "SQL Timing Attack"),
+        (r'(benchmark\(\d+)', "SQL Benchmark Attack"),
+        (r'(select\s+pg_sleep\(\d+\))', "PostgreSQL Delay Attack"),
+        (r'(waitfor\s+delay\s+\'\d+:\d+:\d+\')', "SQL Server Delay Attack")
+    ]
         
         sources_to_check = []
         if request.query_string:
