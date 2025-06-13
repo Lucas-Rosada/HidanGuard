@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HidanGuard - Ataque Detectado!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color:rgb(255, 255, 255);
+            text-align: center;
+            padding: 50px;
+            font-family: 'Poppins', sans-serif;
+            background-image: url('https://i.postimg.cc/m2pYdRFY/Hidan-Guard.png');
+            background-size: cover;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            border: 3px solid #ff0000;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 3em;
+            text-shadow: 0 0 10px #ff0000;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        .ip-display {
+            font-size: 1.8em;
+            color: #fff;
+            background-color: #ff0000;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .ritual-text {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .gif-container {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HidanGuard Te Capturou!</h1>
+        
+        <div class="gif-container">
+            <img src="https://media1.tenor.com/m/PGQ05ymKbC4AAAAd/hidan-ritual.gif" alt="Hidan performing ritual" style="max-width: 300px;">
+        </div>
+        
+        <p>Você caiu na armadilha do HidanGuard!</p>
+        
+        <p>Seu IP foi identificado como uma ameaça:</p>
+        <div class="ip-display">{{ ip }}</div>
+        
+        <p>Tipo de ataque detectado: <strong>{{ attack_type }}</strong></p>
+        
+        <p class="ritual-text">SEU IP FOI BLOQUEADO!</p>
+        
+        <div class="tempo-restante">
+            {% if data_desbloqueio %}
+                <p>Tempo restante de bloqueio: <span id="countdown"></span></p>
+                <script>
+                    const endTime = new Date("{{ data_desbloqueio.isoformat() }}").getTime();
+                    
+                    function updateCountdown() {
+                        const now = new Date().getTime();
+                        const distance = endTime - now;
+                        
+                        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                        
+                        document.getElementById("countdown").innerHTML = 
+                            `${hours}h ${minutes}m ${seconds}s`;
+                        
+                        if (distance < 0) {
+                            document.getElementById("countdown").innerHTML = "Bloqueio expirado!";
+                            setTimeout(() => { location.reload(); }, 2000);
+                        }
+                    }
+                    
+                    updateCountdown();
+                    setInterval(updateCountdown, 1000);
+                </script>
+            {% else %}
+                <p>🔒 BLOQUEIO PERMANENTE 🔒</p>
+            {% endif %}
+        </div>
+
+        <div class="gif-container">
+            <img src="https://media.tenor.com/3ScAow6mZ5QAAAAd/hidan-akatsuki.gif" alt="Hidan cursing" style="max-width: 200px;">
+        </div>
+        
+        <p>User-Agent: {{ user_agent }}</p>
+        
+        <p>Se isso foi um erro, entre em contato com o administrador!</p>
+    </div>
+</body>
+</html>

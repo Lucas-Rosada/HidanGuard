@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Muitas Tentativas - HidanGuard</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+            font-family: 'Poppins', sans-serif;
+            background-image: url('https://i.postimg.cc/m2pYdRFY/Hidan-Guard.png');
+            background-size: cover;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            border: 3px solid #ff9900;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 3em;
+            text-shadow: 0 0 10px #ff9900;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        .ip-display {
+            font-size: 1.8em;
+            color: #fff;
+            background-color: #ff9900;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .clock {
+            font-size: 5em;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .countdown {
+            font-size: 2em;
+            color: #ff9900;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="clock">⏱️</div>
+        <h1>MUITAS TENTATIVAS!</h1>
+        
+        <p>Você excedeu o limite de tentativas:</p>
+        <div class="ip-display">{{ ip }}</div>
+        
+        <p>Por favor, aguarde antes de tentar novamente.</p>
+        
+        <div class="countdown" id="countdown">Você pode tentar novamente em: 60 segundos</div>
+        
+        <p>Esta ação foi registrada pelo HidanGuard</p>
+        
+        <script>
+            let timeLeft = 60;
+            const countdown = document.getElementById('countdown');
+            
+            const timer = setInterval(() => {
+                timeLeft--;
+                countdown.textContent = `Você pode tentar novamente em: ${timeLeft} segundos`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    countdown.textContent = "Você já pode tentar novamente!";
+                    countdown.style.color = "#00ff00";
+                }
+            }, 1000);
+        </script>
+    </div>
+</body>
+</html>

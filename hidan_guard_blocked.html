@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>IP Bloqueado por HidanGuard</title>
+    <style>
+        body {
+            background-color: #000;
+            color:rgb(255, 255, 255);
+            text-align: center;
+            padding: 50px;
+            font-family: 'Poppins', sans-serif;
+            background-image: url('https://i.postimg.cc/m2pYdRFY/Hidan-Guard.png');
+            background-size: cover;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            border: 3px solid #ff0000;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 3em;
+            text-shadow: 0 0 10px #ff0000;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        .ip-display {
+            font-size: 1.8em;
+            color: #fff;
+            background-color: #ff0000;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .skull {
+            font-size: 5em;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SEU IP FOI BLOQUEADO POR HIDANGUARD!</h1>
+        
+        <p>Você está tentando acessar de um endereço bloqueado:</p>
+        <div class="ip-display">{{ ip }}</div>
+        
+        <p>Tentativa de acesso a: <strong>{{ path }}</strong></p>
+        
+        <p>Boa Tentativa!</p>
+        
+        <p>Se isso foi um erro, entre em contato com o administrador!</p>
+        
+    </div>
+</body>
+</html>
